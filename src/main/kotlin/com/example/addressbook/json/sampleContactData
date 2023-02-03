@@ -1,0 +1,106 @@
+Contacts
+
+{
+    "firstName": "Hamza",
+    "lastName": "Malik",
+    "emails": {
+        "home": "hamza@example.com",
+        "work": "hamzamalik@work.com",
+        "personal": "hamza_personal@example.com"
+    },
+    "phoneNumbers": {
+        "home": "+1234567890",
+        "work": "+0987654321",
+        "mobile": "+1234567890"
+    },
+    "addresses": {
+        "home": "123 Main St, Anytown USA 12345",
+        "work": "456 Market Ave, Anycity USA 67890",
+        "vacation": "789 Ocean Blvd, Anybeach USA 98765"
+    }
+}
+
+{
+    "firstName": "Jeet",
+    "lastName": "Shah",
+    "emails": {
+      "home": "janedoe@example.com",
+      "work": "jane.doe@work.com"
+    },
+    "phoneNumbers": {
+      "home": "+1987654321",
+      "work": "+1789456123"
+    },
+    "addresses": {
+      "home": "456 Elm St, Anytown USA 12345",
+      "work": "789 Market Ave, Anycity USA 67890"
+    }
+}
+
+{
+    "firstName": "Jim",
+    "lastName": "Smith",
+    "emails": {
+      "home": "jimsmith@example.com",
+      "work": "jim.smith@work.com"
+    },
+    "phoneNumbers": {
+      "home": "+1357902468",
+      "work": "+2468035791"
+    },
+    "addresses": {
+      "home": "123 Pine St, Anytown USA 12345",
+      "work": "456 Oak Ave, Anycity USA 67890"
+    }
+}
+
+{
+    "firstName": "Emily",
+    "lastName": "Brown",
+    "emails": {
+      "home": "emilybrown@example.com",
+      "work": "emily.brown@work.com"
+    },
+    "phoneNumbers": {
+      "home": "+1987456321",
+      "work": "+1789654123"
+    },
+    "addresses": {
+      "home": "789 Cedar St, Anytown USA 12345",
+      "work": "456 Maple Ave, Anycity USA 67890"
+    }
+}
+
+{
+    "firstName": "Michael",
+    "lastName": "Johnson",
+    "emails": {
+      "home": "michaeljohnson@example.com",
+      "work": "michael.johnson@work.com"
+    },
+    "phoneNumbers": {
+      "home": "+1567902438",
+      "work": "+2348035791"
+    },
+    "addresses": {
+      "home": "123 Cedar St, Anytown USA 12345",
+      "work": "456 Elm Ave, Anycity USA 67890"
+    }
+}
+
+{
+    "firstName": "Sarah",
+    "lastName": "Jones",
+    "emails": {
+      "home": "sarahjones@example.com",
+      "work": "sarah.jones@work.com"
+    },
+    "phoneNumbers": {
+      "home": "+1987654311",
+      "work": "+1789456131"
+    },
+    "addresses": {
+      "home": "456 Pine St, Anytown USA 12345",
+      "work": "789 Oak Ave, Anycity USA 67890"
+    }
+}
