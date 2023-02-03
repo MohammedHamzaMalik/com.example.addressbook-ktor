@@ -37,7 +37,7 @@ class FetchGroupMemberCommand(
 
 class ConnectContactWithGroupsCommand(
     val cmd: CommandContext,
-    private val req: ConnectContactwithGroupsRequest
+    private val req: ConnectContactWithGroupsRequest
 ): Command {
     override fun execute(): Either<Exception, String> {
         return GroupMemberRepo.connectContactWithGroupsInTable(req.contactId, req.groupIds)
@@ -46,7 +46,7 @@ class ConnectContactWithGroupsCommand(
 
 class ConnectGroupWithContactsCommand(
     val cmd: CommandContext,
-    private val req: ConnectGroupwtihContactsRequest
+    private val req: ConnectGroupWithContactsRequest
 ): Command {
     override fun execute(): Either<Exception, String> {
         return GroupMemberRepo.connectGroupWithContactsInTable(req.groupId, req.contactIds)

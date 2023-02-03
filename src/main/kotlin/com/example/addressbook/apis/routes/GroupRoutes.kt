@@ -1,12 +1,13 @@
 package com.example.addressbook.apis.routes
 
 import AppContext
+import arrow.core.getOrElse
+import arrow.core.right
 import com.addressBook.dbSetup.connectToDatabase
 import com.addressBook.dbSetup.resetDatabase
-import com.addressBook.entryPoints.addGroup
-import com.addressBook.entryPoints.fetchGroup
-import com.addressBook.entryPoints.fetchAllGroups
+import com.addressBook.entryPoints.*
 import com.addressBook.requests.AddGroupRequest
+import com.addressBook.requests.EditGroupRequest
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -16,16 +17,15 @@ import java.util.*
 
 fun Route.groupRoutes() {
     val dbCon = connectToDatabase()
-    resetDatabase()
     route("/groups") {
         get {
-            val allGroupsFetched = fetchAllGroups(AppContext(dbCon)).orNull()!!
+            val allGroupsFetched = fetchAllGroups(AppContext(dbCon))
             call.respond(allGroupsFetched)
         }
         get("/{groupId}") {
-            val uuid = call.parameters["groupId"]!!
-            val groupFetched = fetchGroup(AppContext(dbCon), UUID.fromString(uuid)
-                ).orNull()!!
+            val groupId = call.parameters["groupId"]
+            val groupFetched = fetchGroup(AppContext(dbCon), UUID.fromString(groupId)
+                )
             call.respond(groupFetched)
         }
         post {
@@ -34,14 +34,31 @@ fun Route.groupRoutes() {
                 AddGroupRequest(
                     group.groupName
                 )
-            ).orNull()!!
-            call.respondText("Group added ${groupAdded.groupId}", status = HttpStatusCode.Created)
+            )
+            call.respond(groupAdded)
         }
-        put("/{id}") {
-            call.respondText("Update group with id ${call.parameters["id"]}")
+        put("/{groupId}") {
+            val groupId = call.parameters["groupId"]
+            val groupEdited = editGroup(AppContext(dbCon), UUID.fromString(groupId),
+                EditGroupRequest(
+                    UUID.fromString(groupId),
+                    "PDEU"
+                )
+            )
+            call.respondText(groupEdited.toString(), status = HttpStatusCode.OK)
         }
-        delete("/{id}") {
-            call.respondText("Delete group with id ${call.parameters["id"]}")
+        delete("/{groupId}") {
+            val groupId = call.parameters["groupId"]
+            val groupDeleted = deleteGroup(AppContext(dbCon), UUID.fromString(groupId)
+                )
+            call.respondText(groupDeleted.toString(), status = HttpStatusCode.OK)
+        }
+
+
+        get("/{groupId}/groupMembers") {
+            val groupId = call.parameters["groupId"]
+            val groupMembers = displayContactsByGroupId(AppContext(dbCon), UUID.fromString(groupId))
+            call.respond(groupMembers)
         }
     }
 }

@@ -44,7 +44,7 @@ fun fetchGroupMember(
 }
 fun connectContactWithGroups(
     ac: AppContext,
-    req: ConnectContactwithGroupsRequest
+    req: ConnectContactWithGroupsRequest
 ): Either<Exception, String> {
     val cmdCtx = CommandContext(ac.db)
     val cmd = ConnectContactWithGroupsCommand(cmdCtx, req)
@@ -53,7 +53,7 @@ fun connectContactWithGroups(
 
 fun connectGroupWithContacts(
     ac: AppContext,
-    req: ConnectGroupwtihContactsRequest
+    req: ConnectGroupWithContactsRequest
 ): Either<Exception, String> {
     val cmdCtx = CommandContext(ac.db)
     val cmd = ConnectGroupWithContactsCommand(cmdCtx, req)

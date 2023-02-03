@@ -4,6 +4,10 @@ import arrow.core.Either
 import com.addressBook.commands.*
 import com.addressBook.dataClasses.Group
 import com.commandPattern.addressBook.dataClasses.*
+import com.example.addressbook.commands.AddPhoneNumberCommand
+import com.example.addressbook.commands.DeletePhoneNumberCommand
+import com.example.addressbook.commands.FetchPhoneNumberCommand
+import com.example.addressbook.commands.UpdatePhoneNumberCommand
 
 object Handler {
 
@@ -18,6 +22,9 @@ object Handler {
         return cmd.execute()
     }
     fun fetchContactHandler(cmd: FetchContactCommand): Either<Exception, Contact> {
+        return cmd.execute()
+    }
+    fun fetchAllContactsHandler(cmd: FetchAllContactsCommand): Either<Exception, List<Contact>> {
         return cmd.execute()
     }
 
@@ -64,4 +71,22 @@ object Handler {
     fun displayGroupMembersByGroupIdHandler(cmd: DisplayContactsByGroupIdCommand): Either<Exception, List<Contact>> {
         return cmd.execute()
     }
+
+    fun addPhoneNumberInContactHandler(cmd: AddPhoneNumberCommand): Either<Exception, String> {
+        return cmd.execute()
+    }
+
+    fun deletePhoneNumberInContactHandler(cmd: DeletePhoneNumberCommand): Either<Exception, String> {
+        return cmd.execute()
+    }
+
+    fun updatePhoneNumberInContactHandler(cmd: UpdatePhoneNumberCommand): Either<Exception, String> {
+        return cmd.execute()
+    }
+
+//    fun fetchPhoneNumberInContactHandler(cmd: FetchPhoneNumberCommand): Either<Exception, PhoneNumber> {
+//        return cmd.execute()
+//    }
+
+
 }

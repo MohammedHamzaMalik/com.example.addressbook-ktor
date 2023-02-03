@@ -4,13 +4,11 @@ package com.addressBook.entryPoints
 import AppContext
 import CommandContext
 import arrow.core.Either
-import com.addressBook.commands.AddContactCommand
-import com.addressBook.commands.DeleteContactCommand
-import com.addressBook.commands.EditContactCommand
-import com.addressBook.commands.FetchContactCommand
+import com.addressBook.commands.*
 import com.addressBook.handlers.Handler.addContactHandler
 import com.addressBook.handlers.Handler.deleteContactHandler
 import com.addressBook.handlers.Handler.editContactHandler
+import com.addressBook.handlers.Handler.fetchAllContactsHandler
 import com.addressBook.handlers.Handler.fetchContactHandler
 import com.commandPattern.addressBook.dataClasses.Contact
 import com.commandPattern.addressBook.requests.*
@@ -51,4 +49,12 @@ fun fetchContact(
     val cmdCtx = CommandContext(ac.db)
     val cmd = FetchContactCommand(cmdCtx, contactId)
     return fetchContactHandler(cmd)
+}
+
+fun fetchAllContacts(
+    ac: AppContext
+): Either<Exception, List<Contact>> {
+    val cmdCtx = CommandContext(ac.db)
+    val cmd = FetchAllContactsCommand(cmdCtx)
+    return fetchAllContactsHandler(cmd)
 }

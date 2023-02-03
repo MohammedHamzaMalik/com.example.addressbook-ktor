@@ -59,10 +59,10 @@ fun getFetchGroupMemberRequest(groupId: UUID, contactId: UUID): FetchGroupMember
     return FetchGroupMemberRequest(groupId, contactId)
 }
 
-fun getConnectContactWithGroupsRequest(contactId: UUID, groupIds: List<UUID>): ConnectContactwithGroupsRequest {
-    return ConnectContactwithGroupsRequest(contactId, groupIds)
+fun getConnectContactWithGroupsRequest(contactId: UUID, groupIds: List<UUID>): ConnectContactWithGroupsRequest {
+    return ConnectContactWithGroupsRequest(contactId, groupIds)
 }
 
-fun getConnectGroupWithContactsRequest(groupId: UUID, contactIds: List<UUID>): ConnectGroupwtihContactsRequest {
-    return ConnectGroupwtihContactsRequest(groupId, contactIds)
+fun getConnectGroupWithContactsRequest(groupId: UUID, contactIds: List<UUID>): ConnectGroupWithContactsRequest {
+    return ConnectGroupWithContactsRequest(groupId, contactIds)
 }

@@ -30,7 +30,7 @@ object GroupRepo {
                 AllGroupMembers.deleteWhere { AllGroupMembers.groupId eq groupId }
                 Groups.deleteWhere { Groups.groupId eq groupId }
             }
-            Either.Right("Group is deleted")
+            Either.Right("Group with groupId - $groupId, is deleted")
         } catch (e: Exception) {
             Either.Left(Exception("Error while deleting group in table"))
         }
@@ -42,7 +42,7 @@ object GroupRepo {
                     it[groupName] = group.groupName
                 }
             }
-            Either.Right("Group is edited.")
+            Either.Right("Group with groupId - $groupId, is edited.")
         } catch (e: Exception) {
             Either.Left(Exception("Error while editing group in table"))
         }

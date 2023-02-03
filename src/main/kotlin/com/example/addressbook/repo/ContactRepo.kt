@@ -8,12 +8,9 @@ import com.addressBook.tables.Contacts
 import com.addressBook.tables.Emails
 import com.addressBook.tables.PhoneNumbers
 import com.commandPattern.addressBook.dataClasses.Contact
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.deleteWhere
-import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.update
 import java.util.*
 
 
@@ -134,6 +131,37 @@ object ContactRepo {
             Either.Right(contact)
         } catch (e: Exception) {
             Either.Left(Exception("Error while fetching contact in table."))
+        }
+    }
+
+    fun fetchAllContactsInTable(): Either<Exception, List<Contact>> {
+        return try {
+            val contacts = mutableListOf<Contact>()
+            transaction {
+                Contacts.selectAll().forEach { contactRow ->
+                    val contactId = contactRow[Contacts.contactId]
+                    val firstName = contactRow[Contacts.firstName]
+                    val lastName = contactRow[Contacts.lastName]
+                    val emails = Emails.select { Emails.contactId eq contactId }.associate {
+                        it[Emails.emailType] to it[Emails.email]
+                    }
+                    val phoneNumbers = PhoneNumbers.select { PhoneNumbers.contactId eq contactId }.associate {
+                        it[PhoneNumbers.phoneNumberType] to it[PhoneNumbers.phoneNumber]
+                    }
+                    val addresses = Addresses.select { Addresses.contactId eq contactId }.associate {
+                        it[Addresses.addressType] to it[Addresses.address]
+                    }
+                    contacts.add(
+                        Contact(
+                            contactId, firstName, lastName, emails.toMutableMap(), phoneNumbers.toMutableMap(),
+                            addresses.toMutableMap()
+                        )
+                    )
+                }
+            }
+            Either.Right(contacts)
+        } catch (e: Exception) {
+            Either.Left(Exception("Error while fetching all contacts in table."))
         }
     }
 }

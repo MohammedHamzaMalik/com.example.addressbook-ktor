@@ -1,7 +1,9 @@
 package com.commandPattern.addressBook.dataClasses
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import java.util.UUID
 
+@JsonSerialize
 data class Contact(
     val contactId: UUID,
     val firstName: String,

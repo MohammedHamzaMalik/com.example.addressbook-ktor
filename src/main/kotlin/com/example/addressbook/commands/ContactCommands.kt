@@ -60,3 +60,11 @@ class FetchContactCommand(
         return ContactRepo.fetchContactInTable(contactId)
     }
 }
+
+class FetchAllContactsCommand(
+    val cmdCtx: CommandContext
+): Command {
+    override fun execute(): Either<Exception, List<Contact>> {
+        return ContactRepo.fetchAllContactsInTable()
+    }
+}
