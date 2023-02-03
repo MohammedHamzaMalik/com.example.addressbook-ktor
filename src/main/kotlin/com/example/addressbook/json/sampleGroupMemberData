@@ -1,0 +1,4 @@
+{
+    "groupId": UUID,
+    "contactId": UUID
+}
